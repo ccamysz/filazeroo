@@ -2,9 +2,18 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
-import { Clock, Users, BarChart3, Zap, Shield, Bell } from "lucide-react";
+import { Clock, Users, BarChart3, Zap, Shield, Bell, Heart, Landmark, Building, ShoppingCart, GraduationCap, Wrench } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+
+const servicos = [
+  { icon: Heart, title: "Saúde", description: "Clínicas, hospitais, laboratórios e consultórios." },
+  { icon: Landmark, title: "Bancos e Lotéricas", description: "Agências bancárias, casas lotéricas e cooperativas." },
+  { icon: Building, title: "Atendimentos Municipais", description: "Prefeituras, secretarias e órgãos públicos." },
+  { icon: ShoppingCart, title: "Supermercados", description: "Mercados, padarias e lojas de conveniência." },
+  { icon: GraduationCap, title: "Educação", description: "Escolas, universidades e secretarias acadêmicas." },
+  { icon: Wrench, title: "Serviços Gerais", description: "Salões, oficinas, cartórios e muito mais." },
+];
 
 const features = [
   {
@@ -75,6 +84,33 @@ const Index = () => {
                   <a href="#como-funciona">Saiba Mais</a>
                 </Button>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Serviços */}
+        <section id="servicos" className="py-20 bg-card">
+          <div className="container">
+            <div className="mx-auto max-w-2xl text-center mb-14">
+              <h2 className="font-display text-3xl font-bold text-foreground sm:text-4xl">
+                Para quem é o FilaZero?
+              </h2>
+              <p className="mt-4 text-muted-foreground">
+                Atendemos diversos segmentos que precisam de organização no atendimento.
+              </p>
+            </div>
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {servicos.map((s) => (
+                <div key={s.title} className="group flex items-start gap-4 rounded-xl border border-border/60 bg-background p-5 transition-shadow hover:shadow-lg">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/20 text-accent transition-colors group-hover:bg-accent group-hover:text-accent-foreground">
+                    <s.icon className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <h3 className="font-display text-base font-semibold text-foreground">{s.title}</h3>
+                    <p className="mt-1 text-sm text-muted-foreground leading-relaxed">{s.description}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>

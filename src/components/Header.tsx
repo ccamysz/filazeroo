@@ -20,6 +20,9 @@ const Header = () => {
 
         {/* Desktop nav */}
         <nav className="hidden items-center gap-6 md:flex" aria-label="Navegação principal">
+          <a href="#servicos" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
+            Serviços
+          </a>
           <a href="#como-funciona" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
             Como Funciona
           </a>
@@ -52,6 +55,9 @@ const Header = () => {
       {mobileOpen && (
         <nav className="border-t bg-card p-4 md:hidden" aria-label="Navegação mobile">
           <div className="flex flex-col gap-3">
+            <a href="#servicos" className="rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground" onClick={() => setMobileOpen(false)}>
+              Serviços
+            </a>
             <a href="#como-funciona" className="rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground" onClick={() => setMobileOpen(false)}>
               Como Funciona
             </a>
