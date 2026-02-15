@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import Login from "./pages/Login";
 import Cadastro from "./pages/Cadastro";
 import FilaCliente from "./pages/FilaCliente";
+import ClienteDashboard from "./pages/ClienteDashboard";
 import AdminLayout from "./components/AdminLayout";
 import AdminDashboard from "./pages/admin/Dashboard";
 import AdminFila from "./pages/admin/Fila";
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/login" element={<Login />} />
           <Route path="/cadastro" element={<Cadastro />} />
           <Route path="/fila" element={<FilaCliente />} />
+          <Route path="/cliente" element={<ClienteDashboard />} />
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<AdminDashboard />} />
             <Route path="fila" element={<AdminFila />} />
