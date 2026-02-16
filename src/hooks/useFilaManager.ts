@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { Senha, TipoSenha, StatusSenha } from "@/types/queue";
 import { mockSenhas, mockAtendentes } from "@/data/mockData";
 
@@ -45,7 +45,6 @@ export function useFilaManager() {
 
       let proxima: Senha | undefined;
 
-      // Regra: a cada 2 normais, 1 preferencial
       if (preferenciais.length > 0 && normalSemPreferencial >= 2) {
         proxima = preferenciais[0];
         normalSemPreferencial = 0;
@@ -69,23 +68,66 @@ export function useFilaManager() {
 
   const finalizarSenha = useCallback((senhaId: string) => {
     setSenhas((prev) =>
-      prev.map((s) => (s.id === senhaId ? { ...s, status: "finalizado" as StatusSenha } : s))
+      prev.map((s) =>
+        s.id === senhaId
+          ? { ...s, status: "finalizado" as StatusSenha, horarioFinalizacao: new Date().toISOString() }
+          : s
+      )
     );
   }, []);
 
-  const cancelarSenha = useCallback((senhaId: string) => {
+  const cancelarSenha = useCallback((senhaId: string, motivo?: string) => {
     setSenhas((prev) =>
-      prev.map((s) => (s.id === senhaId ? { ...s, status: "cancelado" as StatusSenha } : s))
+      prev.map((s) =>
+        s.id === senhaId
+          ? {
+              ...s,
+              status: "cancelado" as StatusSenha,
+              justificativa: motivo
+                ? { motivo, timestamp: new Date().toISOString(), acao: "cancelado" as const }
+                : undefined,
+            }
+          : s
+      )
     );
   }, []);
 
-  const pularSenha = useCallback((senhaId: string) => {
+  const pularSenha = useCallback((senhaId: string, motivo?: string) => {
     setSenhas((prev) => {
       const senha = prev.find((s) => s.id === senhaId);
-      if (!senha || senha.status !== "aguardando") return prev;
+      if (!senha) return prev;
+
+      // If atendendo, move back to aguardando at end of queue
+      if (senha.status === "atendendo") {
+        return prev.map((s) =>
+          s.id === senhaId
+            ? {
+                ...s,
+                status: "aguardando" as StatusSenha,
+                horarioEntrada: new Date().toISOString(),
+                horarioChamada: undefined,
+                atendenteId: undefined,
+                justificativa: motivo
+                  ? { motivo, timestamp: new Date().toISOString(), acao: "pulado" as const }
+                  : undefined,
+              }
+            : s
+        );
+      }
+
+      if (senha.status !== "aguardando") return prev;
       // Move to end of queue
       const updated = prev.filter((s) => s.id !== senhaId);
-      return [...updated, { ...senha, horarioEntrada: new Date().toISOString() }];
+      return [
+        ...updated,
+        {
+          ...senha,
+          horarioEntrada: new Date().toISOString(),
+          justificativa: motivo
+            ? { motivo, timestamp: new Date().toISOString(), acao: "pulado" as const }
+            : undefined,
+        },
+      ];
     });
   }, []);
 
@@ -102,7 +144,7 @@ export function useFilaManager() {
     (senhaId: string): number => {
       const pos = getPosicao(senhaId);
       if (pos <= 0) return 0;
-      return pos * 5; // ~5 min por pessoa
+      return pos * 5;
     },
     [getPosicao]
   );
@@ -136,7 +178,6 @@ export function useFilaManager() {
 }
 
 function getFilaOrdenada(aguardando: Senha[]): Senha[] {
-  // Simple ordering: by entry time
   return [...aguardando].sort(
     (a, b) => new Date(a.horarioEntrada).getTime() - new Date(b.horarioEntrada).getTime()
   );

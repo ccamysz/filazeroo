@@ -3,6 +3,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
+import { Textarea } from "@/components/ui/textarea";
 import { useFilaManager } from "@/hooks/useFilaManager";
 import { Phone, SkipForward, X, CheckCircle, Plus } from "lucide-react";
 import { TipoSenha } from "@/types/queue";
@@ -23,10 +25,35 @@ const AdminFila = () => {
   const [atendenteAtual, setAtendenteAtual] = useState(atendentes.find((a) => a.status === "ativo")?.id || "");
   const [tipoNovaSenha, setTipoNovaSenha] = useState<TipoSenha>("normal");
 
+  // Justificativa dialog state
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [dialogAcao, setDialogAcao] = useState<"cancelar" | "pular">("cancelar");
+  const [dialogSenhaId, setDialogSenhaId] = useState("");
+  const [dialogSenhaNumero, setDialogSenhaNumero] = useState("");
+  const [justificativa, setJustificativa] = useState("");
+
   const atendentesAtivos = atendentes.filter((a) => a.status === "ativo");
 
   const formatTime = (iso: string) => {
     return new Date(iso).toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
+  };
+
+  const openJustificativaDialog = (senhaId: string, senhaNumero: string, acao: "cancelar" | "pular") => {
+    setDialogSenhaId(senhaId);
+    setDialogSenhaNumero(senhaNumero);
+    setDialogAcao(acao);
+    setJustificativa("");
+    setDialogOpen(true);
+  };
+
+  const confirmarAcao = () => {
+    if (!justificativa.trim()) return;
+    if (dialogAcao === "cancelar") {
+      cancelarSenha(dialogSenhaId, justificativa.trim());
+    } else {
+      pularSenha(dialogSenhaId, justificativa.trim());
+    }
+    setDialogOpen(false);
   };
 
   return (
@@ -99,9 +126,28 @@ const AdminFila = () => {
                       Chamado às {formatTime(s.horarioChamada!)}
                     </span>
                   </div>
-                  <Button size="sm" variant="outline" onClick={() => finalizarSenha(s.id)}>
-                    <CheckCircle className="h-4 w-4 mr-1" /> Finalizar
-                  </Button>
+                  <div className="flex gap-1">
+                    <Button size="sm" variant="outline" onClick={() => finalizarSenha(s.id)}>
+                      <CheckCircle className="h-4 w-4 mr-1" /> Finalizar
+                    </Button>
+                    <Button
+                      size="icon"
+                      variant="ghost"
+                      onClick={() => openJustificativaDialog(s.id, s.numero, "pular")}
+                      title="Pular"
+                    >
+                      <SkipForward className="h-4 w-4" />
+                    </Button>
+                    <Button
+                      size="icon"
+                      variant="ghost"
+                      onClick={() => openJustificativaDialog(s.id, s.numero, "cancelar")}
+                      title="Cancelar"
+                      className="text-destructive hover:text-destructive"
+                    >
+                      <X className="h-4 w-4" />
+                    </Button>
+                  </div>
                 </div>
               ))}
             </div>
@@ -134,10 +180,21 @@ const AdminFila = () => {
                     </span>
                   </div>
                   <div className="flex gap-1">
-                    <Button size="icon" variant="ghost" onClick={() => pularSenha(s.id)} title="Pular">
+                    <Button
+                      size="icon"
+                      variant="ghost"
+                      onClick={() => openJustificativaDialog(s.id, s.numero, "pular")}
+                      title="Pular"
+                    >
                       <SkipForward className="h-4 w-4" />
                     </Button>
-                    <Button size="icon" variant="ghost" onClick={() => cancelarSenha(s.id)} title="Cancelar" className="text-destructive hover:text-destructive">
+                    <Button
+                      size="icon"
+                      variant="ghost"
+                      onClick={() => openJustificativaDialog(s.id, s.numero, "cancelar")}
+                      title="Cancelar"
+                      className="text-destructive hover:text-destructive"
+                    >
                       <X className="h-4 w-4" />
                     </Button>
                   </div>
@@ -147,6 +204,41 @@ const AdminFila = () => {
           )}
         </CardContent>
       </Card>
+
+      {/* Justificativa Dialog */}
+      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle className="font-display">
+              {dialogAcao === "cancelar" ? "Cancelar" : "Pular"} Senha {dialogSenhaNumero}
+            </DialogTitle>
+          </DialogHeader>
+          <div className="space-y-3">
+            <p className="text-sm text-muted-foreground">
+              Informe a justificativa para {dialogAcao === "cancelar" ? "o cancelamento" : "pular"} desta senha.
+              Essa informação será registrada nos relatórios.
+            </p>
+            <Textarea
+              placeholder="Ex: Cliente não compareceu, documentação incompleta..."
+              value={justificativa}
+              onChange={(e) => setJustificativa(e.target.value)}
+              rows={3}
+            />
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setDialogOpen(false)}>
+              Voltar
+            </Button>
+            <Button
+              onClick={confirmarAcao}
+              disabled={!justificativa.trim()}
+              className={dialogAcao === "cancelar" ? "bg-destructive text-destructive-foreground hover:bg-destructive/90" : "bg-accent text-accent-foreground hover:bg-accent/90"}
+            >
+              Confirmar
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
