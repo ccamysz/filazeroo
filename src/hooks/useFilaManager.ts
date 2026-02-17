@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import { Senha, TipoSenha, StatusSenha } from "@/types/queue";
+import { Senha, Atendente, TipoSenha, StatusSenha } from "@/types/queue";
 import { mockSenhas, mockAtendentes } from "@/data/mockData";
 
 let contadorNormal = 5;
@@ -8,7 +8,7 @@ let normalSemPreferencial = 0;
 
 export function useFilaManager() {
   const [senhas, setSenhas] = useState<Senha[]>(mockSenhas);
-  const [atendentes, setAtendentes] = useState(mockAtendentes);
+  const [atendentes, setAtendentes] = useState<Atendente[]>(mockAtendentes);
 
   const aguardando = senhas.filter((s) => s.status === "aguardando");
   const atendendo = senhas.filter((s) => s.status === "atendendo");
@@ -159,6 +159,16 @@ export function useFilaManager() {
     );
   }, []);
 
+  const adicionarAtendente = useCallback((nome: string, cargo: string) => {
+    const novo: Atendente = {
+      id: crypto.randomUUID(),
+      nome,
+      cargo,
+      status: "ativo",
+    };
+    setAtendentes((prev) => [...prev, novo]);
+  }, []);
+
   return {
     senhas,
     atendentes,
@@ -174,6 +184,7 @@ export function useFilaManager() {
     getPosicao,
     tempoEstimado,
     toggleAtendente,
+    adicionarAtendente,
   };
 }
 

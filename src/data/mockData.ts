@@ -12,10 +12,10 @@ export const mockSenhas: Senha[] = [
   { id: "8", numero: "N005", tipo: "normal", status: "cancelado", horarioEntrada: new Date(Date.now() - 5000000).toISOString(), justificativa: { motivo: "Cliente não compareceu", timestamp: new Date(Date.now() - 4800000).toISOString(), acao: "cancelado" } },
 ];
 
-export const mockAtendentes = [
-  { id: "1", nome: "Maria Silva", status: "ativo" as const },
-  { id: "2", nome: "João Santos", status: "ativo" as const },
-  { id: "3", nome: "Ana Oliveira", status: "inativo" as const },
+export const mockAtendentes: import("@/types/queue").Atendente[] = [
+  { id: "1", nome: "Maria Silva", cargo: "Atendente Geral", status: "ativo" },
+  { id: "2", nome: "João Santos", cargo: "Caixa", status: "ativo" },
+  { id: "3", nome: "Ana Oliveira", cargo: "Recepcionista", status: "inativo" },
 ];
 
 const TEMPO_MEDIO_GERAL = 10; // minutos - referência para bônus

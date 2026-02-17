@@ -14,10 +14,10 @@ const AdminDashboard = () => {
   ];
 
   return (
-    <div className="space-y-6">
-      <h2 className="font-display text-2xl font-bold text-foreground">Visão Geral</h2>
+    <div className="space-y-4 sm:space-y-6">
+      <h2 className="font-display text-xl sm:text-2xl font-bold text-foreground">Visão Geral</h2>
 
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
         {stats.map((s) => (
           <Card key={s.label}>
             <CardContent className="p-6">

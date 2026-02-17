@@ -22,6 +22,7 @@ export interface Senha {
 export interface Atendente {
   id: string;
   nome: string;
+  cargo?: string;
   status: "ativo" | "inativo";
 }
 
