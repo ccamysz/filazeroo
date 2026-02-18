@@ -42,30 +42,6 @@ Em salões, clínicas, escolas e lojas de bairro, o atendimento ainda acontece d
 
 ---
 
-## 🖥️ Tecnologias
-
-```
-React 18  ·  TypeScript  ·  Vite  ·  Tailwind CSS  ·  Recharts  ·  React Router
-```
-
----
-
-## 🚀 Como Rodar
-
-```bash
-# Clone o repositório
-git clone https://github.com/seu-usuario/filazero.git
-
-# Instale as dependências
-cd filazero
-npm install
-
-# Inicie o servidor de desenvolvimento
-npm run dev
-```
-
----
-
 ## 📂 Estrutura do Projeto
 
 ```
