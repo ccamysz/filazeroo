@@ -82,8 +82,8 @@ const Cadastro = () => {
       <div className="w-full max-w-md">
         <div className="mb-8 text-center">
           <Link to="/" className="inline-flex items-center gap-2">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent text-accent-foreground font-display font-bold text-xl">FZ</div>
-            <span className="font-display text-2xl font-bold text-foreground">Fila<span className="text-accent">Zero</span></span>
+            <img src="/assets/logo-suavez.png" alt="SuaVez" className="h-10 w-10 rounded-lg object-contain" />
+            <span className="font-display text-2xl font-bold text-foreground">Sua<span className="text-accent">Vez</span></span>
           </Link>
         </div>
 

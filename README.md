@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="https://img.shields.io/badge/🚀-FilaZero-00C896?style=for-the-badge&labelColor=1a1a2e" alt="FilaZero" />
+  <img src="https://img.shields.io/badge/🚀-SuaVez-00C896?style=for-the-badge&labelColor=1a1a2e" alt="SuaVez" />
 </p>
 
-<h1 align="center">FilaZero</h1>
+<h1 align="center">SuaVez</h1>
 
 <p align="center">
   <strong>Sistema digital e acessível para organização de filas em pequenos negócios.</strong>
@@ -20,9 +20,9 @@
 
 ## 💡 Sobre o Projeto
 
-O **FilaZero** nasceu para resolver um problema do dia a dia: **filas desorganizadas, senhas de papel e clientes sem previsão de espera.**
+O **SuaVez** nasceu para resolver um problema do dia a dia: **filas desorganizadas, senhas de papel e clientes sem previsão de espera.**
 
-Em salões, clínicas, escolas e lojas de bairro, o atendimento ainda acontece de forma manual — gerando confusão e estresse. O FilaZero transforma essa realidade com tecnologia simples e acessível.
+Em salões, clínicas, escolas e lojas de bairro, o atendimento ainda acontece de forma manual — gerando confusão e estresse. O SuaVez transforma essa realidade com tecnologia simples e acessível.
 
 > *Porque tecnologia não deve ser algo distante ou caro — ela precisa ser acessível também para pequenos negócios e comunidades locais.*
 

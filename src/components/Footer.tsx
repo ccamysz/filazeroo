@@ -1,3 +1,5 @@
+import logo from "@/assets/logo-suavez.png";
+
 const Footer = () => {
   return (
     <footer className="border-t bg-card" id="contato">
@@ -5,11 +7,9 @@ const Footer = () => {
         <div className="grid gap-8 md:grid-cols-3">
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-accent-foreground font-display font-bold text-lg">
-                FZ
-              </div>
+              <img src={logo} alt="SuaVez" className="h-9 w-9 rounded-lg object-contain" />
               <span className="font-display text-xl font-bold text-foreground">
-                Fila<span className="text-accent">Zero</span>
+                Sua<span className="text-accent">Vez</span>
               </span>
             </div>
             <p className="text-sm text-muted-foreground max-w-xs">
@@ -29,14 +29,14 @@ const Footer = () => {
           <div>
             <h3 className="font-display font-semibold text-foreground mb-3">Contato</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>contato@filazero.com</li>
+              <li>contato@suavez.com</li>
               <li>(00) 0000-0000</li>
             </ul>
           </div>
         </div>
 
         <div className="mt-8 border-t pt-6 text-center text-sm text-muted-foreground">
-          © {new Date().getFullYear()} FilaZero. Todos os direitos reservados.
+          © {new Date().getFullYear()} SuaVez. Todos os direitos reservados.
         </div>
       </div>
     </footer>

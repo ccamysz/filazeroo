@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import logo from "@/assets/logo-suavez.png";
 
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -10,11 +11,9 @@ const Header = () => {
     <header className="sticky top-0 z-50 border-b bg-card/80 backdrop-blur-md">
       <div className="container flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-accent-foreground font-display font-bold text-lg">
-            FZ
-          </div>
+          <img src={logo} alt="SuaVez" className="h-9 w-9 rounded-lg object-contain" />
           <span className="font-display text-xl font-bold text-foreground">
-            Fila<span className="text-accent">Zero</span>
+            Sua<span className="text-accent">Vez</span>
           </span>
         </Link>
 
@@ -89,3 +88,4 @@ const Header = () => {
 };
 
 export default Header;
+

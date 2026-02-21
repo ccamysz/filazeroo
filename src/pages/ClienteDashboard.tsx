@@ -78,9 +78,7 @@ const ClienteDashboard = () => {
             <ArrowLeft className="h-5 w-5" />
           </Link>
           <div className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent text-accent-foreground font-display font-bold text-sm">
-              FZ
-            </div>
+            <img src="/assets/logo-suavez.png" alt="SuaVez" className="h-8 w-8 rounded-lg object-contain" />
             <span className="font-display text-lg font-bold text-foreground">Minha Conta</span>
           </div>
         </div>

@@ -18,7 +18,7 @@ const AdminQRCode = () => {
 
     const a = document.createElement("a");
     a.href = url;
-    a.download = "filazero-qrcode.svg";
+    a.download = "suavez-qrcode.svg";
     a.click();
     URL.revokeObjectURL(url);
   };

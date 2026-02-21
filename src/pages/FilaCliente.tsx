@@ -25,7 +25,7 @@ const FilaCliente = () => {
     if (posicao > 0 && posicao <= 2 && !notificado && minhaSenha?.status === "aguardando") {
       setNotificado(true);
       if ("Notification" in window && Notification.permission === "granted") {
-        new Notification("FilaZero", { body: "Sua vez está chegando! Prepare-se." });
+        new Notification("SuaVez", { body: "Sua vez está chegando! Prepare-se." });
       }
     }
   }, [posicao, notificado, minhaSenha]);
@@ -48,10 +48,8 @@ const FilaCliente = () => {
             <ArrowLeft className="h-5 w-5" />
           </Link>
           <div className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent text-accent-foreground font-display font-bold">
-              FZ
-            </div>
-            <span className="font-display text-lg font-bold text-foreground">FilaZero</span>
+            <img src="/assets/logo-suavez.png" alt="SuaVez" className="h-8 w-8 rounded-lg object-contain" />
+            <span className="font-display text-lg font-bold text-foreground">SuaVez</span>
           </div>
         </div>
       </header>

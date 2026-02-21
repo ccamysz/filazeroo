@@ -21,11 +21,9 @@ const AdminLayout = () => {
       {/* Sidebar desktop */}
       <aside className="hidden w-64 flex-col border-r bg-card lg:flex">
         <div className="flex h-16 items-center gap-2 border-b px-6">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-accent-foreground font-display font-bold text-lg">
-            FZ
-          </div>
+          <img src="/assets/logo-suavez.png" alt="SuaVez" className="h-9 w-9 rounded-lg object-contain" />
           <span className="font-display text-xl font-bold text-foreground">
-            Fila<span className="text-accent">Zero</span>
+            Sua<span className="text-accent">Vez</span>
           </span>
         </div>
         <nav className="flex-1 p-4 space-y-1" aria-label="Menu administrativo">
@@ -65,7 +63,7 @@ const AdminLayout = () => {
           <aside className="relative z-10 flex h-full w-64 flex-col bg-card">
             <div className="flex h-16 items-center justify-between border-b px-6">
               <span className="font-display text-xl font-bold text-foreground">
-                Fila<span className="text-accent">Zero</span>
+                Sua<span className="text-accent">Vez</span>
               </span>
               <button onClick={() => setSidebarOpen(false)} aria-label="Fechar menu">
                 <X className="h-5 w-5" />
