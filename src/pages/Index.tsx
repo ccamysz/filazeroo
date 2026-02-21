@@ -58,8 +58,8 @@ const testimonials = [
 ];
 
 const faqs = [
-  { q: "O FilaZero é gratuito?", a: "Sim! Oferecemos um plano gratuito com funcionalidades essenciais. Para funcionalidades avançadas, temos planos acessíveis." },
-  { q: "Preciso instalar algum aplicativo?", a: "Não! O FilaZero funciona diretamente pelo navegador do celular. Basta acessar o link ou escanear o QR Code." },
+  { q: "O SuaVez é gratuito?", a: "Sim! Oferecemos um plano gratuito com funcionalidades essenciais. Para funcionalidades avançadas, temos planos acessíveis." },
+  { q: "Preciso instalar algum aplicativo?", a: "Não! O SuaVez funciona diretamente pelo navegador do celular. Basta acessar o link ou escanear o QR Code." },
   { q: "Como funciona a notificação?", a: "Quando estiver próximo da sua vez, você recebe uma notificação no celular avisando para se dirigir ao local de atendimento." },
   { q: "Posso usar em mais de um estabelecimento?", a: "Sim! Você pode gerenciar múltiplos estabelecimentos e filiais com uma única conta administrativa." },
   { q: "Os dados dos clientes são seguros?", a: "Absolutamente. Utilizamos criptografia de ponta e seguimos as melhores práticas de segurança e LGPD." },
@@ -226,7 +226,7 @@ const Index = () => {
                 </Badge>
                 <h1 className="font-display text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl md:text-6xl">
                   Chega de esperar.{" "}
-                  <span className="text-accent">FilaZero</span> resolve.
+                  <span className="text-accent">SuaVez</span> resolve.
                 </h1>
                 <p className="mt-6 text-lg text-muted-foreground md:text-xl">
                   Sistema completo para eliminar filas presenciais. Seus clientes entram na fila pelo celular e são atendidos com agilidade e organização.
@@ -270,7 +270,7 @@ const Index = () => {
             <div className={`mx-auto max-w-2xl text-center mb-14 transition-all duration-600 ${servicesRef.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
               <Badge variant="outline" className="mb-4">Segmentos</Badge>
               <h2 className="font-display text-3xl font-bold text-foreground sm:text-4xl">
-                Para quem é o FilaZero?
+                Para quem é o SuaVez?
               </h2>
               <p className="mt-4 text-muted-foreground">
                 Atendemos diversos segmentos que precisam de organização no atendimento.
